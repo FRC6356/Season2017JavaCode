@@ -2,7 +2,7 @@ package org.usfirst.frc.team6356.vision;
 
 import  java.lang.Math;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6356.vision.VisionConstants;
 
 public class Vision {
@@ -56,25 +56,54 @@ public class Vision {
 	}
 	
 	public double getHighGoalDistance(){
-		double[] heights = getHeight();
-		double biggestHeightPixels = 0;
-		int topIndex = 0;
-		int botIndex = 0;
-		for(int i = 0; i<heights.length; i++){
-			if(heights.length==1 || i == 0){
-				biggestHeightPixels = heights[i];
-				topIndex = i;
-			}
-			else if(i!=0 && heights[i]>biggestHeightPixels){
-				biggestHeightPixels = heights[i];
-				topIndex = i;
-			}
-			else if (i!=0 && heights[i]<biggestHeightPixels)
-				botIndex = i;
-		}		
-		double targetHeightPixel = getBotRightY(botIndex)-getTopLeftY(topIndex);
-		double distance = (VisionConstants.FUEL_TARGET_HEIGHT_FEET * VisionConstants.CAMERA_Y_RESOLUTION) /
-						  	(2 * targetHeightPixel * Math.tan(VisionConstants.CAMERA_HORIZONTAL_RADIAN));
-		return distance;
+//		double[] heights = getHeight();
+//		double biggestHeightPixels = 0;
+//		int topIndex = 0;
+//		int botIndex = 0;
+//		for(int i = 0; i<heights.length; i++){
+//			if(heights.length==1 || i == 0){
+//				biggestHeightPixels = heights[i];
+//				topIndex = i;
+//			}
+//			else if(i!=0 && heights[i]>biggestHeightPixels){
+//				biggestHeightPixels = heights[i];
+//				topIndex = i;
+//			}
+//			else if (i!=0 && heights[i]<biggestHeightPixels)
+//				botIndex = i;
+//		}		
+//		double targetHeightPixel = getBotRightY(botIndex)-getTopLeftY(topIndex);
+//		double distanceInFeet = (VisionConstants.FUEL_TARGET_HEIGHT_FEET * VisionConstants.CAMERA_Y_RESOLUTION) /
+//						  	(2 * 32 * Math.tan(VisionConstants.CAMERA_HORIZONTAL_RADIAN));
+		try{
+		double topHeight = 0;
+		double botHeight = 0;
+		if(getAreas().length != 0){
+		topHeight = getHeight()[1];
+		botHeight = getHeight()[0];
+		}
+		
+		double distanceInCM = (10*480)/(2*topHeight*Math.tan(1.1955505/2));
+		
+		return distanceInCM;
+		}
+		catch(Exception e){
+			
+		}
+		return 0;
+	}
+	
+	void degreeToRadian(double degree){
+		
+	}
+	
+	public double degreePerPixel(){
+		double degreePerPixel = 68.5/680;
+		return degreePerPixel;
+	}
+	
+	
+	public void log(){
+		SmartDashboard.putNumber("distance", getHighGoalDistance());
 	}
 }

@@ -16,11 +16,12 @@ public class VisionConstants {
 	
 	public static final String SOLIDITY = "solidity";
 	
-	public static final double CAMERA_HORIZONTAL_RADIAN = 0.653;
+	public static final double CAMERA_HORIZONTAL_RADIAN = 1.1955054;
 	
 	public static final double FUEL_TARGET_HEIGHT_FEET = 10/12;
 	
-	public static final double CAMERA_X_RESOLUTION = 0;
+	public static final double CAMERA_X_RESOLUTION = 680;
 	
-	public static final double CAMERA_Y_RESOLUTION = 0;
+	public static final double CAMERA_Y_RESOLUTION = 480;
+	
 }

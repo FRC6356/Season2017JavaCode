@@ -34,10 +34,12 @@ public class Joysticks {
 		double rotation = 0;
 		if(DRIVER.getRawAxis(RobotMap.LeftJoystick.leftTrigger)!=0){
 			rotation = - DRIVER.getRawAxis(RobotMap.LeftJoystick.leftTrigger);
+			Robot.sensors.resetGyro();
 		}
 		
 		if(DRIVER.getRawAxis(RobotMap.LeftJoystick.rightTrigger)!=0){
 			rotation = DRIVER.getRawAxis(RobotMap.LeftJoystick.rightTrigger);
+			Robot.sensors.resetGyro();
 		}
 		return rotation;
 	}
