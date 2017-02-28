@@ -23,8 +23,8 @@ public class PidRotationSubsystem extends PIDSubsystem{
         tolerance_degrees = 1.5;
         setAbsoluteTolerance(tolerance_degrees);
         getPIDController().setSetpoint(0);
-        LiveWindow.addActuator("Drive", "AutoRotation", getPIDController());
-        LiveWindow.addSensor("test", "gyro", Robot.sensors.getGyro());
+//        LiveWindow.addActuator("Drive", "AutoRotation", getPIDController());
+//        LiveWindow.addSensor("test", "gyro", Robot.sensors.getGyro());
 	}
 
 	public void startProcessCameraData(){
@@ -47,7 +47,7 @@ public class PidRotationSubsystem extends PIDSubsystem{
 
 	@Override
 	protected void usePIDOutput(double output) {
-		Robot.mecanumDrive.pidRotateDrive(output, output);
+		Robot.mecanumDrive.pidRotateDrive(output);
 	}
 
 	@Override

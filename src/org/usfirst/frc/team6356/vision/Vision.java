@@ -3,6 +3,8 @@ package org.usfirst.frc.team6356.vision;
 import  java.lang.Math;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team6356.robot.ModuleManager;
 import org.usfirst.frc.team6356.vision.VisionConstants;
 
 public class Vision {
@@ -93,6 +95,22 @@ public class Vision {
 		return 0;
 	}
 	
+	public double gearLiftPosition(){
+		try{
+			double x1 = getCenterX()[0];
+			double x2 = getCenterX()[1];
+			double liftPosition = (x1 + x2) / 2;
+//			System.out.println("lift target found!");
+			return liftPosition;
+			
+		}
+		catch(Exception e){
+//			System.out.println("cannot found the lift target!");
+			ModuleManager.isVisionProcessingGearLift = false;
+		}
+		
+		return 340;
+	}
 	void degreeToRadian(double degree){
 		
 	}
@@ -102,7 +120,7 @@ public class Vision {
 		return degreePerPixel;
 	}
 	
-	
+
 	public void log(){
 		SmartDashboard.putNumber("distance", getHighGoalDistance());
 	}

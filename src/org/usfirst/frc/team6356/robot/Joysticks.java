@@ -34,13 +34,18 @@ public class Joysticks {
 		double rotation = 0;
 		if(DRIVER.getRawAxis(RobotMap.LeftJoystick.leftTrigger)!=0){
 			rotation = - DRIVER.getRawAxis(RobotMap.LeftJoystick.leftTrigger);
-			Robot.sensors.resetGyro();
+			Robot.mecanumDrive.setTurnPID(Robot.sensors.getAngle());
 		}
 		
 		if(DRIVER.getRawAxis(RobotMap.LeftJoystick.rightTrigger)!=0){
 			rotation = DRIVER.getRawAxis(RobotMap.LeftJoystick.rightTrigger);
-			Robot.sensors.resetGyro();
+			Robot.mecanumDrive.setTurnPID(Robot.sensors.getAngle());
 		}
+		
 		return rotation;
+	}
+	
+	public static double getClimbAxis(){
+		return OPERATOR.getRawAxis(RobotMap.RightJoystick.rightYAxis)*0.2;
 	}
 }

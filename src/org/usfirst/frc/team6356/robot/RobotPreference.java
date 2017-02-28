@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Preferences;
 public class RobotPreference {
     static public double getAutoRotateP() {
         //return Preferences.getInstance().getDouble("AutoRotateP", 0.0002);
-    	return 0.09;
+    	return 0.03;
     }
     static public double getAutoRotateI() {
         //return Preferences.getInstance().getDouble("AutoRotateI", 0.00005);
@@ -13,7 +13,7 @@ public class RobotPreference {
     }
     static public double getAutoRotateD() {
         //return Preferences.getInstance().getDouble("AutoRotateD", 0.00);
-    	return 0.088;
+    	return 0.05;
     }
     static public double getAutoRotateOnTargetToleranceDegrees() {
         return 2; /*Preferences.getInstance().getDouble("AutoRotateOnTargetToleranceDegrees", 2.0); */
@@ -22,4 +22,3 @@ public class RobotPreference {
         return Preferences.getInstance().getDouble("AutoRotateDefaultTargetDegrees",0.0);
     }
 }
-
